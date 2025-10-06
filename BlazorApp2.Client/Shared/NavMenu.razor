@@ -1,0 +1,21 @@
+<nav class="nav-menu p-3">
+    <h3>BlazorApp2</h3>
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <NavLink href="/" Match="NavLinkMatch.All">Home</NavLink>
+        </li>
+        <li class="nav-item">
+            <NavLink href="/data-entry">Data Entry</NavLink>
+        </li>
+    </ul>
+</nav>
+
+<style>
+.nav-menu {
+    font-family: sans-serif;
+    height: 100%;
+}
+.nav-link.active {
+    font-weight: bold;
+}
+</style>

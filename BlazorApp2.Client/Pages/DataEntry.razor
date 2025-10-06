@@ -1,0 +1,47 @@
+﻿@page "/data-entry"
+@inject HttpClient Http
+
+<h3>Data Entry</h3>
+
+<EditForm Model="@form" OnValidSubmit="@HandleSubmit" FormName="DataEntryForm">
+    <InputText @bind-Value="form.Name" placeholder="Enter Name" />
+    <InputText @bind-Value="form.ProductModel" placeholder="Enter Product Model" />
+    <InputText @bind-Value="form.PartNumber" placeholder="Enter Part Number" />
+    <InputNumber @bind-Value="form.Quantity" placeholder="Enter Quantity" />
+    <InputNumber @bind-Value="form.Price" placeholder="Enter Price" />
+
+    <button type="submit">Submit</button>
+</EditForm>
+
+<p>@statusMessage</p>
+
+@code {
+    private FormModel form = new();
+
+    private string statusMessage = string.Empty;
+
+
+    private async Task HandleSubmit()
+    {   
+        Console.WriteLine($"BaseAddress = {Http.BaseAddress}");
+        var response = await Http.PostAsJsonAsync("https://localhost:7228/", form);
+        if (response.IsSuccessStatusCode)
+        {
+            statusMessage = "Saved successfully!";
+            form.PartNumber = ""; // loop back to part number entry
+        }
+        else
+        {
+            statusMessage = "Error saving record.";
+        }
+    }
+
+    public class FormModel
+    {
+        public string Name { get; set; } = string.Empty;
+        public string ProductModel { get; set; } = string.Empty;
+        public string PartNumber { get; set; } = string.Empty;
+        public int Quantity { get; set; }
+        public decimal Price { get; set; }
+    }
+}

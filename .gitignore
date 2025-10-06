@@ -1,0 +1,25 @@
+# Build folders
+bin/
+obj/
+.vs/
+*.user
+*.suo
+*.cache
+*.log
+
+# Publish outputs
+wwwroot/dist/
+wwwroot/build/
+
+# OS-specific files
+Thumbs.db
+.DS_Store
+
+# Rider / VSCode
+.idea/
+.vscode/
+
+# NuGet packages
+*.nupkg
+*.snupkg
+packages/
